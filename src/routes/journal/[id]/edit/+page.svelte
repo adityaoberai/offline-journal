@@ -40,7 +40,7 @@
 <main>
     <header>
         <h1>Edit Journal Entry</h1>
-        <a href={`/journal/${page.params.id}`} class="back-btn">← Back to Entry</a>
+        <a href={`/journal/${journal.id}`} class="back-btn">← Back to Entry</a>
     </header>
 
     {#if error}
