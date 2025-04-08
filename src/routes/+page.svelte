@@ -1,11 +1,12 @@
 <script>
     import { onMount } from 'svelte';
-    import { getJournals, deleteJournal, dbStatus, syncStatus } from '$lib/database.js';
+    import { getJournals, deleteJournal, dbStatus, syncStatus, triggerSync } from '$lib/database.js';
     import JournalCard from '$lib/components/JournalCard.svelte';
     
     let journals = $state([]);
     let error = $state(null);
     let loading = $state(true);
+    let syncing = $state(false);
     
     async function loadJournals() {
         try {
@@ -29,6 +30,19 @@
         }
     }
     
+    async function handleSync() {
+        if (syncing) return;
+        try {
+            syncing = true;
+            await triggerSync();
+            await loadJournals(); // Reload journals after sync
+        } catch (err) {
+            error = err.message;
+        } finally {
+            syncing = false;
+        }
+    }
+
     function formatDate(timestamp) {
         return new Date(timestamp).toLocaleString();
     }
@@ -51,6 +65,13 @@
             </div>
             <div class="status-indicator">
                 Sync Status: <span class={$syncStatus}>{$syncStatus}</span>
+                <button 
+                    class="sync-btn" 
+                    disabled={$syncStatus === 'syncing' || syncing} 
+                    onclick={handleSync}
+                >
+                    {syncing ? 'Syncing...' : 'Sync Now'}
+                </button>
             </div>
         </div>
     </header>
@@ -201,5 +222,25 @@
         .journal-entries {
             gap: 15px;
         }
+    }
+
+    .sync-btn {
+        background-color: #4a76a8;
+        color: white;
+        border: none;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+    
+    .sync-btn:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+    
+    .sync-btn:hover:not(:disabled) {
+        background-color: #3b5998;
     }
 </style>
