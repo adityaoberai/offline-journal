@@ -1,15 +1,16 @@
 import { Client, Databases } from 'appwrite';
+import { PUBLIC_APPWRITE_ENDPOINT, PUBLIC_APPWRITE_PROJECT_ID, PUBLIC_APPWRITE_DATABASE_ID, PUBLIC_APPWRITE_COLLECTION_ID } from '$env/static/public';
 
 export const appwriteConfig = {
-    endpoint: 'https://cloud.appwrite.io/v1', // Replace with your Appwrite endpoint
-    projectId: 'journal-rxdb', // Replace with your Appwrite project ID
-    databaseId: 'journals', // Replace with your Appwrite database ID
-    collectionId: 'entries', // Replace with your Appwrite collection ID
+    endpoint: PUBLIC_APPWRITE_ENDPOINT,
+    projectId: PUBLIC_APPWRITE_PROJECT_ID,
+    databaseId: PUBLIC_APPWRITE_DATABASE_ID,
+    collectionId: PUBLIC_APPWRITE_COLLECTION_ID,
 };
 
 export const client = new Client()
     .setEndpoint(appwriteConfig.endpoint)
-    .setEndpointRealtime(appwriteConfig.endpoint) // Set the endpoint for real-time updates
+    .setEndpointRealtime(appwriteConfig.endpoint)
     .setProject(appwriteConfig.projectId);
 
 export const databases = new Databases(client);
