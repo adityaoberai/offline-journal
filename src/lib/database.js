@@ -1,7 +1,7 @@
 import { createRxDatabase, addRxPlugin, RxCollectionBase } from 'rxdb/plugins/core';
 import { RxDBQueryBuilderPlugin } from 'rxdb/plugins/query-builder';
 import { RxDBUpdatePlugin } from 'rxdb/plugins/update';
-import { getRxStorageLocalstorage } from 'rxdb/plugins/storage-localstorage';
+import { getRxStorageDexie } from 'rxdb/plugins/storage-dexie';
 import { replicateAppwrite } from 'rxdb/plugins/replication-appwrite';
 import { ID } from 'appwrite';
 import { client, databases, appwriteConfig } from './appwrite.js';
@@ -50,7 +50,7 @@ export const getDB = async () => {
         // Create the database
         dbPromise = createRxDatabase({
             name: 'journals',
-            storage: getRxStorageLocalstorage()
+            storage: getRxStorageDexie()
         });
 
         const db = await dbPromise;
