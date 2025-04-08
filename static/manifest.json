@@ -1,0 +1,17 @@
+{
+  "name": "Offline Journal",
+  "short_name": "Journal",
+  "description": "A private offline-first journaling application",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4a76a8",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
