@@ -75,6 +75,8 @@ export const getDB = async () => {
     }
 };
 
+let replicationState = null;
+
 // Set up replication with Appwrite
 const setupReplication = async (db) => {
     try {
@@ -82,7 +84,7 @@ const setupReplication = async (db) => {
         syncStatus.set('online');
         
         // Start replication
-        const replicationState = replicateAppwrite({
+        replicationState = replicateAppwrite({
             replicationIdentifier: 'journals-replication',
             client,
             databaseId: appwriteConfig.databaseId,
@@ -111,6 +113,23 @@ const setupReplication = async (db) => {
     } catch (error) {
         console.error('Replication setup error:', error);
         syncStatus.set('error');
+    }
+};
+
+// Manual sync function
+export const triggerSync = async () => {
+    if (!replicationState) {
+        throw new Error('Replication not initialized');
+    }
+    
+    try {
+        syncStatus.set('syncing');
+        await replicationState.reSync();
+        syncStatus.set('online');
+    } catch (error) {
+        console.error('Manual sync error:', error);
+        syncStatus.set('error');
+        throw error;
     }
 };
 
