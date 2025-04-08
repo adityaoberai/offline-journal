@@ -1,16 +1,16 @@
 <script>
     import { preventDefault } from 'svelte/legacy';
     import { page } from '$app/stores';
-    import { updateJournal } from '$lib/database.js';
+    import { updateJournal, getJournal } from '$lib/database.js';
     import { goto } from '$app/navigation';
+    import { onMount } from 'svelte';
     
-    let { data } = $props();
-    
-    let journal = $state(data.journal);
-    let title = $state(journal?.title ?? '');
-    let content = $state(journal?.content ?? '');
+    let journal = $state(null);
+    let title = $state('');
+    let content = $state('');
     let saving = $state(false);
-    let error = $state(data.error);
+    let error = $state(null);
+    let loading = $state(true);
 
     async function handleSubmit() {
         if (!title || !content) {
@@ -18,7 +18,8 @@
             return;
         }
 
-        try {            saving = true;
+        try {
+            saving = true;
             await updateJournal(journal.id, {
                 title,
                 content
@@ -31,6 +32,23 @@
             saving = false;
         }
     }
+
+    onMount(async () => {
+        try {
+            loading = true;
+            journal = await getJournal($page.params.id);
+            if (journal) {
+                title = journal.title;
+                content = journal.content;
+            } else {
+                error = 'Journal entry not found';
+            }
+        } catch (err) {
+            error = err.message;
+        } finally {
+            loading = false;
+        }
+    });
 </script>
 
 <svelte:head>
@@ -48,43 +66,48 @@
             <p>{error}</p>
             <button onclick={() => error = null}>Dismiss</button>
         </div>
-    {/if}    {#if journal}
-        <form onsubmit={preventDefault(handleSubmit)}>
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input 
-                    type="text" 
-                    id="title" 
-                    bind:value={title} 
-                    placeholder="Enter a title for your journal entry" 
-                    disabled={saving}
-                    required
-                />
-            </div>
-              <div class="form-group">
-                <label for="content">Content</label>
-                <textarea 
-                    id="content" 
-                    bind:value={content} 
-                    placeholder="Write your thoughts here..." 
-                    rows="15"
-                    disabled={saving}
-                    required
-                ></textarea>
-            </div>
-            
-            <div class="form-actions">
-                <button type="button" class="cancel-btn" onclick={() => goto(`/journal/${journal.id}`)} disabled={saving}>Cancel</button>
-                <button type="submit" class="save-btn" disabled={saving}>
-                    {saving ? 'Saving...' : 'Save Changes'}
-                </button>
-            </div>
-        </form>
+    {/if}
+    {#if loading}
+        <p>Loading...</p>
     {:else}
-        <div class="not-found">
-            <p>Journal entry not found</p>
-            <a href="/">Return to Journal</a>
-        </div>
+        {#if journal}
+            <form onsubmit={preventDefault(handleSubmit)}>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input 
+                        type="text" 
+                        id="title" 
+                        bind:value={title} 
+                        placeholder="Enter a title for your journal entry" 
+                        disabled={saving}
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea 
+                        id="content" 
+                        bind:value={content} 
+                        placeholder="Write your thoughts here..." 
+                        rows="15"
+                        disabled={saving}
+                        required
+                    ></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" onclick={() => goto(`/journal/${journal.id}`)} disabled={saving}>Cancel</button>
+                    <button type="submit" class="save-btn" disabled={saving}>
+                        {saving ? 'Saving...' : 'Save Changes'}
+                    </button>
+                </div>
+            </form>
+        {:else}
+            <div class="not-found">
+                <p>Journal entry not found</p>
+                <a href="/">Return to Journal</a>
+            </div>
+        {/if}
     {/if}
 </main>
 
@@ -131,7 +154,8 @@
         justify-content: space-between;
         align-items: center;
     }
-      .not-found {
+    
+    .not-found {
         text-align: center;
         padding: 40px;
         color: #6c757d;

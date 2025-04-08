@@ -1,18 +1,16 @@
 <script>
+    import { onMount } from 'svelte';
     import { getJournals, deleteJournal, dbStatus, syncStatus } from '$lib/database.js';
     import JournalCard from '$lib/components/JournalCard.svelte';
     
-    let { data } = $props();
-    
-    let journals = $state(data.journals);
-    let error = $state(data.error || null);
-    let loading = $state(false);
+    let journals = $state([]);
+    let error = $state(null);
+    let loading = $state(true);
     
     async function loadJournals() {
         try {
             loading = true;
-            const result = await getJournals();
-            journals = result;
+            journals = await getJournals();
         } catch (err) {
             error = err.message;
         } finally {
@@ -34,6 +32,10 @@
     function formatDate(timestamp) {
         return new Date(timestamp).toLocaleString();
     }
+    
+    onMount(async () => {
+        await loadJournals();
+    });
 </script>
 
 <svelte:head>

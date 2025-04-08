@@ -1,9 +1,12 @@
-<script>    import { deleteJournal } from '$lib/database.js';
+<script>
+    import { onMount } from 'svelte';
+    import { page } from '$app/stores';
+    import { deleteJournal, getJournal } from '$lib/database.js';
     import { goto } from '$app/navigation';
     
-    let { data } = $props();
-    let journal = $state(data.journal);
-    let error = $state(data.error);
+    let journal = $state(null);
+    let error = $state(null);
+    let loading = $state(true);
 
     async function handleDelete() {
         if (confirm('Are you sure you want to delete this journal entry?')) {
@@ -19,6 +22,20 @@
     function formatDate(timestamp) {
         return new Date(timestamp).toLocaleString();
     }
+
+    onMount(async () => {
+        try {
+            loading = true;
+            journal = await getJournal($page.params.id);
+            if (!journal) {
+                error = 'Journal entry not found';
+            }
+        } catch (err) {
+            error = err.message;
+        } finally {
+            loading = false;
+        }
+    });
 </script>
 
 <svelte:head>
@@ -35,7 +52,8 @@
             <p>{error}</p>
             <button onclick={() => error = null}>Dismiss</button>
         </div>
-    {/if}    {#if journal}
+    {/if}
+    {#if journal}
         <article class="journal-entry">
             <div class="journal-header">
                 <h1>{journal.title}</h1>
@@ -43,7 +61,8 @@
                     <a href={`/journal/${journal.id}/edit`} class="edit-btn">Edit</a>
                     <button class="delete-btn" onclick={handleDelete}>Delete</button>
                 </div>
-            </div><div class="journal-meta">
+            </div>
+            <div class="journal-meta">
                 <div class="timestamp">
                     <span>Created: {formatDate(journal.createdAt)}</span>
                     <span>Updated: {formatDate(journal.updatedAt)}</span>
