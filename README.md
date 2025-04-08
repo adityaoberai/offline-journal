@@ -1,23 +1,37 @@
-# sv
+# Offline Journal
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A private journaling application built with Svelte and RxDB that lets you write and store your thoughts offline. Your entries are stored locally with optional cloud sync capabilities through Appwrite.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- ✍️ Create, edit, and manage journal entries
+- 💾 Offline-first approach using RxDB for local storage
+- 🔄 Optional cloud sync with Appwrite
+- 🔐 Privacy-focused - all data stays on your device by default
+- 📱 Responsive design that works on all devices
+- ⚡ Fast and lightweight
+- 🎯 Clean and intuitive interface
 
+## Technical Stack
+
+- **Frontend**: Svelte 5 with SvelteKit
+- **Database**: RxDB with LocalStorage adapter
+- **Cloud Sync**: Appwrite backend (optional)
+- **Build Tool**: Vite
+
+## Development
+
+1. Clone the repository
+2. Install dependencies:
 ```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+npm install
 ```
 
-## Developing
+3. Configure Appwrite (optional):
+   - Create an Appwrite project
+   - Update `src/lib/appwrite.js` with your project details
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
+4. Start the development server:
 ```bash
 npm run dev
 
@@ -27,7 +41,7 @@ npm run dev -- --open
 
 ## Building
 
-To create a production version of your app:
+To create a production version of the app:
 
 ```bash
 npm run build
@@ -35,4 +49,10 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+MIT License

@@ -1,8 +1,9 @@
 {
 	"name": "offline-journal",
+	"version": "1.0.0",
 	"private": true,
-	"version": "0.0.1",
 	"type": "module",
+	"description": "A private offline-first journaling application built with SvelteKit, RxDB, and Appwrite",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -29,5 +30,16 @@
 	"dependencies": {
 		"appwrite": "^17.0.1",
 		"rxdb": "^16.9.0"
+	},
+	"keywords": [
+		"journal",
+		"offline-first",
+		"privacy",
+		"svelte",
+		"rxdb",
+		"appwrite"
+	],
+	"engines": {
+		"node": ">=18"
 	}
 }
