@@ -29,10 +29,6 @@
 				<img src="/favicon.png" alt="Journal Icon" class="brand-icon" />
 			</a>
 		</div>
-		<div class="nav-links">
-			<a href="/">Home</a>
-			<a href="/journal/new">New Entry</a>
-		</div>
 		<div class="nav-user">
 			{#if userData}
 				<span>{userData.name}</span>
@@ -61,19 +57,10 @@
 		justify-content: space-between;
 		align-items: center;
 	}
-	.nav-brand a {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: #333;
-		text-decoration: none;
-		display: flex;
-		align-items: center;
-		gap: 8px;
-	}
 
 	.brand-icon {
-		width: 24px;
-		height: 24px;
+		width: 48px;
+		height: auto;
 		object-fit: contain;
 	}
 
