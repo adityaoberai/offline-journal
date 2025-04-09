@@ -23,11 +23,13 @@ A private journaling application built with Svelte and RxDB that lets you write 
 
 1. Clone the repository
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Configure Environment Variables:
+
    - Copy `.env.example` to `.env`
    - Update the `.env` file with your Appwrite project details:
      ```
@@ -38,6 +40,7 @@ npm install
      ```
 
 4. Start the development server:
+
 ```bash
 npm run dev
 
