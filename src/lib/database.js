@@ -6,6 +6,7 @@ import { replicateAppwrite } from 'rxdb/plugins/replication-appwrite';
 import { ID } from 'appwrite';
 import { client, databases, appwriteConfig } from './appwrite.js';
 import { writable } from 'svelte/store';
+import { isAuthenticated } from './auth.js';
 
 addRxPlugin(RxDBQueryBuilderPlugin);
 addRxPlugin(RxDBUpdatePlugin);
@@ -80,7 +81,19 @@ let replicationState = null;
 // Set up replication with Appwrite
 const setupReplication = async (db) => {
     try {
-        // Set status to online since we're not using authentication
+        // Only set online when authenticated through the auth module
+        
+        let authenticated = false;
+        const unsubscribe = isAuthenticated.subscribe(value => {
+            authenticated = value;
+        });
+        
+        if (!authenticated) {
+            syncStatus.set('offline');
+            unsubscribe();
+            return;
+        }
+        
         syncStatus.set('online');
         
         // Start replication

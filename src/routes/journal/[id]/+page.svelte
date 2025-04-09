@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-    import { page } from '$app/stores';
+    import { page } from '$app/state';
     import { deleteJournal, getJournal } from '$lib/database.js';
     import { goto } from '$app/navigation';
     
@@ -26,7 +26,7 @@
     onMount(async () => {
         try {
             loading = true;
-            journal = await getJournal($page.params.id);
+            journal = await getJournal(page.params.id);
             if (!journal) {
                 error = 'Journal entry not found';
             }

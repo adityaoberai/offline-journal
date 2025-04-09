@@ -1,9 +1,8 @@
-<script>
-    import { onMount } from 'svelte';
+<script>    import { onMount } from 'svelte';
     import { getJournals, deleteJournal, dbStatus, syncStatus, triggerSync } from '$lib/database.js';
     import JournalCard from '$lib/components/JournalCard.svelte';
-    
-    let journals = $state([]);
+    import Navbar from '$lib/components/Navbar.svelte';
+      let journals = $state([]);
     let error = $state(null);
     let loading = $state(true);
     let syncing = $state(false);
@@ -45,9 +44,7 @@
 
     function formatDate(timestamp) {
         return new Date(timestamp).toLocaleString();
-    }
-    
-    onMount(async () => {
+    }    onMount(async () => {
         await loadJournals();
     });
 </script>
@@ -57,6 +54,8 @@
 </svelte:head>
 
 <main>
+    <Navbar />
+
     <header>
         <h1>My Journal</h1>
         <div class="status-bar">
