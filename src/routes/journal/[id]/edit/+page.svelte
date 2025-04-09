@@ -228,4 +228,69 @@
 	.save-btn:hover:not(:disabled) {
 		background-color: #3b5998;
 	}
+
+	/* Mobile responsive styles */
+	@media (max-width: 768px) {
+		main {
+			padding: 15px;
+		}
+		
+		header {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 15px;
+		}
+		
+		h1 {
+			font-size: 1.8rem;
+		}
+		
+		form {
+			padding: 20px;
+		}
+		
+		.form-actions {
+			flex-direction: row;
+			width: 100%;
+		}
+		
+		.cancel-btn, .save-btn {
+			flex: 1;
+			text-align: center;
+			padding: 12px 0;  /* Bigger touch target */
+		}
+	}
+	
+	@media (max-width: 480px) {
+		main {
+			padding: 10px;
+		}
+		
+		h1 {
+			font-size: 1.5rem;
+		}
+		
+		form {
+			padding: 15px;
+			border-radius: 6px;
+		}
+		
+		.error-message {
+			flex-direction: column;
+			gap: 10px;
+		}
+		
+		.error-message button {
+			align-self: flex-end;
+		}
+		
+		input,
+		textarea {
+			font-size: 16px;  /* Prevents iOS zoom on input focus */
+		}
+		
+		textarea {
+			min-height: 150px; /* Ensure good size on small screens */
+		}
+	}
 </style>

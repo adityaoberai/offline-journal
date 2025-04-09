@@ -224,8 +224,56 @@
 	}
 
 	@media (max-width: 768px) {
+		main {
+			padding: 15px;
+		}
+		
+		h1 {
+			font-size: 1.8rem;
+		}
+		
+		.status-bar {
+			flex-direction: column;
+			gap: 10px;
+		}
+		
+		.actions {
+			justify-content: center;
+			margin-top: 15px;
+		}
+		
+		.new-entry-btn {
+			padding: 10px 20px;
+			width: 100%;
+			text-align: center;
+		}
+		
 		.journal-entries {
 			gap: 15px;
+		}
+		
+		.error-message {
+			flex-direction: column;
+			gap: 10px;
+		}
+		
+		.error-message button {
+			align-self: flex-end;
+		}
+	}
+	
+	@media (max-width: 480px) {
+		main {
+			padding: 10px;
+		}
+		
+		h1 {
+			font-size: 1.5rem;
+		}
+		
+		.empty-state, 
+		.loading {
+			padding: 25px 15px;
 		}
 	}
 

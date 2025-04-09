@@ -188,16 +188,68 @@
 
 	/* Responsive adjustments */
 	@media (max-width: 768px) {
+		main {
+			padding: 15px;
+		}
+		
+		.journal-entry {
+			padding: 20px;
+		}
+		
+		h1 {
+			font-size: 1.8rem;
+			word-break: break-word;
+		}
+		
 		.journal-header {
 			flex-direction: column;
 			align-items: flex-start;
 			gap: 15px;
+		}
+		
+		.journal-actions {
+			width: 100%;
+			justify-content: space-between;
+		}
+		
+		.edit-btn, .delete-btn {
+			padding: 10px 20px; /* Larger touch targets */
+			flex: 1;
+			text-align: center;
 		}
 
 		.journal-meta {
 			flex-direction: column;
 			align-items: flex-start;
 			gap: 15px;
+		}
+	}
+	
+	@media (max-width: 480px) {
+		main {
+			padding: 10px;
+		}
+		
+		.journal-entry {
+			padding: 15px;
+			border-radius: 6px;
+		}
+		
+		h1 {
+			font-size: 1.5rem;
+		}
+		
+		.error-message {
+			flex-direction: column;
+			gap: 10px;
+		}
+		
+		.error-message button {
+			align-self: flex-end;
+		}
+		
+		.journal-content {
+			font-size: 0.95rem;
 		}
 	}
 </style>

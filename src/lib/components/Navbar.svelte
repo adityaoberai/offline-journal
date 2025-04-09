@@ -27,11 +27,12 @@
 		<div class="nav-brand">
 			<a href="/">
 				<img src="/favicon.png" alt="Journal Icon" class="brand-icon" />
+				<span class="app-name">Offline Journal</span>
 			</a>
 		</div>
 		<div class="nav-user">
 			{#if userData}
-				<span>{userData.name}</span>
+				<span class="user-name">{userData.name}</span>
 			{/if}
 			<button onclick={handleLogout} class="logout-btn">Logout</button>
 		</div>
@@ -58,35 +59,31 @@
 		align-items: center;
 	}
 
+	.nav-brand a {
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		color: #333;
+	}
+
 	.brand-icon {
 		width: 48px;
 		height: auto;
 		object-fit: contain;
 	}
 
-	.nav-links {
-		display: flex;
-		gap: 20px;
+	.app-name {
+		margin-left: 10px;
+		font-weight: 600;
+		font-size: 1.2rem;
+		display: block;
 	}
 
-	.nav-links a {
-		color: #555;
-		text-decoration: none;
+	.user-name {
 		font-weight: 500;
-	}
-
-	.nav-links a:hover {
-		color: #4a76a8;
-	}
-
-	.nav-user {
-		display: flex;
-		align-items: center;
-		gap: 12px;
-	}
-
-	.nav-user span {
-		font-weight: 500;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 150px;
 	}
 
 	.logout-btn {
@@ -102,5 +99,48 @@
 	.logout-btn:hover {
 		background-color: #4a76a8;
 		color: white;
+	}
+
+	/* Mobile responsive styles */
+	@media (max-width: 768px) {
+		.nav-container {
+			padding: 0 15px;
+		}
+
+		.brand-icon {
+			width: 36px;
+		}
+
+		.app-name {
+			font-size: 1rem;
+		}
+
+		.nav-user {
+			gap: 8px;
+		}
+
+		.user-name {
+			max-width: 100px;
+		}
+
+		.logout-btn {
+			padding: 5px 10px;
+			font-size: 0.8rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.app-name {
+			display: none;
+		}
+
+		.user-name {
+			max-width: 80px;
+		}
+
+		.nav-user {
+			flex-wrap: wrap;
+			justify-content: flex-end;
+		}
 	}
 </style>

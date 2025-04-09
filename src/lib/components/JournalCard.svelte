@@ -111,15 +111,30 @@
 
 	/* Responsive adjustments */
 	@media (max-width: 768px) {
+		.journal-card {
+			padding: 16px;
+		}
+		
 		.journal-header {
 			flex-direction: column;
 			align-items: flex-start;
 			gap: 10px;
 		}
 
+		.journal-header h2 {
+			font-size: 1.3rem;
+			word-break: break-word;
+		}
+
 		.journal-actions {
 			width: 100%;
-			justify-content: flex-start;
+			justify-content: space-between;
+		}
+		
+		.view-btn, .edit-btn, .delete-btn {
+			padding: 8px 16px; /* Larger touch targets */
+			min-width: 60px;
+			text-align: center;
 		}
 
 		.journal-footer {
@@ -130,6 +145,27 @@
 
 		.timestamp {
 			align-items: flex-start;
+			width: 100%;
+		}
+	}
+	
+	@media (max-width: 480px) {
+		.journal-card {
+			padding: 12px;
+		}
+		
+		.journal-header h2 {
+			font-size: 1.2rem;
+		}
+		
+		.journal-actions {
+			flex-wrap: wrap;
+			gap: 8px;
+		}
+		
+		.view-btn, .edit-btn, .delete-btn {
+			flex: 1;
+			font-size: 0.75rem;
 		}
 	}
 </style>

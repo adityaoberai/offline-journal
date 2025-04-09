@@ -197,4 +197,59 @@
 	.secondary-btn:hover {
 		background-color: #edf2f7;
 	}
+	
+	/* Mobile responsive styles */
+	@media (max-width: 768px) {
+		.auth-container {
+			padding: 15px;
+		}
+		
+		.auth-card {
+			padding: 25px;
+		}
+		
+		button {
+			padding: 14px; /* Larger touch target */
+		}
+	}
+	
+	@media (max-width: 480px) {
+		.auth-container {
+			padding: 10px;
+		}
+		
+		.auth-card {
+			padding: 20px;
+			border-radius: 6px;
+		}
+		
+		h1 {
+			font-size: 1.5rem;
+			margin-bottom: 20px;
+		}
+		
+		.error-message {
+			flex-direction: column;
+			gap: 10px;
+		}
+		
+		.error-message button {
+			align-self: flex-end;
+			width: auto;
+			padding: 8px 12px;
+			font-size: 0.9rem;
+		}
+		
+		input {
+			font-size: 16px; /* Prevents iOS zoom on input focus */
+		}
+		
+		.success-message {
+			padding: 15px;
+		}
+		
+		.success-message h2 {
+			font-size: 1.3rem;
+		}
+	}
 </style>
