@@ -27,9 +27,15 @@ A private journaling application built with Svelte and RxDB that lets you write 
 npm install
 ```
 
-3. Configure Appwrite (optional):
-   - Create an Appwrite project
-   - Update `src/lib/appwrite.js` with your project details
+3. Configure Environment Variables:
+   - Copy `.env.example` to `.env`
+   - Update the `.env` file with your Appwrite project details:
+     ```
+     PUBLIC_APPWRITE_ENDPOINT=your-appwrite-endpoint
+     PUBLIC_APPWRITE_PROJECT_ID=your-project-id
+     PUBLIC_APPWRITE_DATABASE_ID=your-database-id
+     PUBLIC_APPWRITE_COLLECTION_ID=your-collection-id
+     ```
 
 4. Start the development server:
 ```bash
