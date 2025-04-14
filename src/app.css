@@ -1,0 +1,457 @@
+/* Global styles */
+:root {
+  /* Color variables */
+  --color-primary: #4a76a8;
+  --color-primary-hover: #3b5998;
+  --color-text: #333;
+  --color-text-secondary: #6c757d;
+  --color-bg: #f5f7fb;
+  --color-white: #fff;
+  --color-light-gray: #e9ecef;
+  --color-gray: #ddd;
+  --color-success-bg: #d4edda;
+  --color-success-text: #155724;
+  --color-error-bg: #f8d7da;
+  --color-error-text: #721c24;
+  --color-warning-bg: #fff3cd;
+  --color-warning-text: #856404;
+  --color-info-bg: #cce5ff;
+  --color-info-text: #004085;
+  --border-radius: 4px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Base styles */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+/* Layout */
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--color-gray);
+  padding-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 2rem;
+}
+
+h2 {
+  margin: 0 0 16px 0;
+  color: var(--color-text);
+  font-size: 1.5rem;
+}
+
+p {
+  color: var(--color-text-secondary);
+  margin-bottom: 20px;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Forms */
+form {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: var(--box-shadow);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--color-gray);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+/* Buttons */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.primary-btn,
+.save-btn {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.primary-btn:hover:not(:disabled),
+.save-btn:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+.cancel-btn,
+.secondary-btn {
+  background-color: var(--color-light-gray);
+  color: var(--color-text-secondary);
+}
+
+/* Navigation */
+.back-btn {
+  text-decoration: none;
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+/* Status indicators */
+.error-message {
+  background-color: var(--color-error-bg);
+  color: var(--color-error-text);
+  padding: 10px;
+  border-radius: var(--border-radius);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.success-message {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+  border-radius: var(--border-radius);
+}
+
+/* Auth components */
+.auth-container {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
+
+.auth-card {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.loading-screen {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--color-primary);
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Journal components */
+.journal-card {
+  border: 1px solid var(--color-gray);
+  border-radius: 8px;
+  padding: 20px;
+  background-color: var(--color-white);
+  box-shadow: var(--box-shadow);
+}
+
+.journal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.journal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.journal-preview {
+  margin: 10px 0;
+  color: #666;
+  line-height: 1.5;
+}
+
+.journal-content {
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.view-btn,
+.edit-btn {
+  padding: 5px 10px;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.view-btn {
+  background-color: var(--color-light-gray);
+  color: var(--color-text-secondary);
+}
+
+.edit-btn {
+  background-color: #e2e3e5;
+  color: #383d41;
+}
+
+.delete-btn {
+  background-color: var(--color-error-bg);
+  color: var(--color-error-text);
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.not-found {
+  text-align: center;
+  padding: 40px;
+  color: var(--color-text-secondary);
+}
+
+.loading,
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: var(--color-text-secondary);
+}
+
+/* Status indicators */
+.status-bar {
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-indicator span {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.status-indicator .ready,
+.status-indicator .online {
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.status-indicator .syncing {
+  background-color: var(--color-info-bg);
+  color: var(--color-info-text);
+}
+
+.status-indicator .error {
+  background-color: var(--color-error-bg);
+  color: var(--color-error-text);
+}
+
+.status-indicator .offline,
+.status-indicator .initializing,
+.status-indicator .creating {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning-text);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  main {
+    padding: 15px;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  form {
+    padding: 20px;
+  }
+
+  .form-actions {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .cancel-btn, 
+  .save-btn, 
+  .primary-btn {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0; /* Bigger touch target */
+  }
+
+  .journal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .journal-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .view-btn, .edit-btn, .delete-btn {
+    padding: 8px 16px; /* Larger touch targets */
+    min-width: 60px;
+    text-align: center;
+  }
+
+  .auth-container {
+    padding: 15px;
+  }
+  
+  .auth-card {
+    padding: 25px;
+  }
+  
+  button {
+    padding: 14px; /* Larger touch target */
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  form {
+    padding: 15px;
+    border-radius: 6px;
+  }
+
+  .error-message {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .error-message button {
+    align-self: flex-end;
+  }
+
+  input,
+  textarea {
+    font-size: 16px; /* Prevents iOS zoom on input focus */
+  }
+
+  .auth-container {
+    padding: 10px;
+  }
+  
+  .auth-card {
+    padding: 20px;
+    border-radius: 6px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .journal-card {
+    padding: 12px;
+  }
+  
+  .journal-header h2 {
+    font-size: 1.2rem;
+  }
+  
+  .journal-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .view-btn, .edit-btn, .delete-btn {
+    flex: 1;
+    font-size: 0.75rem;
+  }
+}

@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { initAuth, isAuthenticated, isLoading } from '$lib/auth.js';
 	import { goto } from '$app/navigation';
+	import '../app.css';
 
 	let { children } = $props();
 
@@ -50,31 +51,3 @@
 	<!-- This ensures auth pages like login are always displayed -->
 	{@render children?.()}
 {/if}
-
-<style>
-	.loading-screen {
-		height: 100vh;
-		width: 100vw;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		background-color: #f5f7fb;
-	}
-
-	.spinner {
-		width: 40px;
-		height: 40px;
-		border: 4px solid rgba(0, 0, 0, 0.1);
-		border-radius: 50%;
-		border-top-color: #4a76a8;
-		animation: spin 1s ease-in-out infinite;
-		margin-bottom: 16px;
-	}
-
-	@keyframes spin {
-		to {
-			transform: rotate(360deg);
-		}
-	}
-</style>
