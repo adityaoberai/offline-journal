@@ -1,6 +1,6 @@
 # Offline Journal
 
-A private journaling application built with Svelte and RxDB that lets you write and store your thoughts offline. Your entries are stored locally with optional cloud sync capabilities through Appwrite.
+A private journaling application built with Svelte and RxDB that lets you write and store your thoughts offline. Your entries are stored locally with cloud sync capabilities through Appwrite.
 
 ## Features
 
