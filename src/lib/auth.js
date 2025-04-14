@@ -74,3 +74,27 @@ export const getSession = async () => {
 		return null;
 	}
 };
+
+export async function isProtectedRoute(pathname) {
+	// Auth route patterns
+	const AUTH_ROUTES = ['/login', '/auth/callback'];
+
+    // Check if we're on an auth route (login, callback etc)
+    const isAuthRoute = AUTH_ROUTES.some(
+        route => route === pathname || (route.endsWith('/callback') && pathname.startsWith(route))
+    );
+
+    // If it's an auth route, allow access
+    if (isAuthRoute) {
+        return false;
+    }
+
+    // For all other routes, check authentication
+    try {
+        const session = await getSession();
+        return !session; // Return true if there's no session (route should be protected)
+    } catch (error) {
+        console.error('Auth check error:', error);
+        return true; // Protect route on error
+    }
+}

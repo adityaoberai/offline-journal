@@ -9,10 +9,6 @@
 	// Authentication state
 	let authenticated = $state(false);
 	let loading = $state(true);
-
-	// Auth route patterns
-	const AUTH_ROUTES = ['/login', '/auth/callback'];
-
 	onMount(async () => {
 		// Initialize authentication on app load
 		await initAuth();
@@ -21,24 +17,11 @@
 		const authSubscribe = isAuthenticated.subscribe((value) => (authenticated = value));
 		const loadingSubscribe = isLoading.subscribe((value) => (loading = value));
 
-		// Check if we're on a protected route and redirect if not authenticated
-		const currentPath = window.location.pathname;
-		if (!authenticated && !loading && !isAuthRoute(currentPath)) {
-			goto('/login');
-		}
-
 		return () => {
 			authSubscribe();
 			loadingSubscribe();
 		};
 	});
-
-	// Function to check if current route is an auth route
-	function isAuthRoute(path) {
-		return AUTH_ROUTES.some(
-			(route) => route === path || (route.endsWith('/callback') && path.startsWith(route))
-		);
-	}
 </script>
 
 {#if loading}
