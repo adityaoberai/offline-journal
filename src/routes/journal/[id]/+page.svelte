@@ -53,7 +53,9 @@
 			<button onclick={() => (error = null)}>Dismiss</button>
 		</div>
 	{/if}
-	{#if journal}
+	{#if loading}
+		<div class="loading">Loading...</div>
+	{:else if journal}
 		<article class="journal-entry">
 			<div class="journal-header">
 				<h1>{journal.title}</h1>

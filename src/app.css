@@ -225,65 +225,113 @@ button:disabled {
   }
 }
 
-/* Journal content - keep only what's needed for the content view */
-.journal-content {
-  line-height: 1.6;
-  white-space: pre-wrap;
+/* Journal specific styles */
+.journal-entry {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: var(--box-shadow);
 }
 
-.not-found {
-  text-align: center;
-  padding: 40px;
-  color: var(--color-text-secondary);
-}
-
-.loading,
-.empty-state {
-  text-align: center;
-  padding: 40px;
-  color: var(--color-text-secondary);
-}
-
-/* Status indicators */
-.status-bar {
+.journal-header {
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.journal-meta {
+  margin-bottom: 20px;
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
 }
 
-.status-indicator {
+.journal-actions {
   display: flex;
-  align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 
-.status-indicator span {
-  padding: 3px 8px;
-  border-radius: 12px;
-  font-size: 0.8rem;
+.edit-btn {
+  padding: 8px 16px;
+  background-color: var(--color-light-gray);
+  color: var(--color-text-secondary);
+  border-radius: var(--border-radius);
+  text-decoration: none;
 }
 
-.status-indicator .ready,
-.status-indicator .online {
-  background-color: var(--color-success-bg);
-  color: var(--color-success-text);
-}
-
-.status-indicator .syncing {
-  background-color: var(--color-info-bg);
-  color: var(--color-info-text);
-}
-
-.status-indicator .error {
+.delete-btn {
+  padding: 8px 16px;
   background-color: var(--color-error-bg);
   color: var(--color-error-text);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
 }
 
-.status-indicator .offline,
-.status-indicator .initializing,
-.status-indicator .creating {
-  background-color: var(--color-warning-bg);
-  color: var(--color-warning-text);
+.journal-content {
+  line-height: 1.6;
+  white-space: pre-wrap;
+  color: var(--color-text);
+  margin-top: 20px;
+}
+
+/* Auth callback styles */
+.auth-callback-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.auth-callback-card {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: var(--box-shadow);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.status-container {
+  padding: 20px;
+}
+
+.status-container h2 {
+  margin-bottom: 10px;
+}
+
+.check-icon {
+  color: var(--color-success-text);
+  background-color: var(--color-success-bg);
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  font-size: 1.5rem;
+}
+
+.error-icon {
+  color: var(--color-error-text);
+  background-color: var(--color-error-bg);
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  font-size: 1.5rem;
+}
+
+.login-link {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--border-radius);
+  text-decoration: none;
 }
 
 /* Responsive styles */
@@ -319,16 +367,29 @@ button:disabled {
     padding: 12px 0; /* Bigger touch target */
   }
 
-  .auth-container {
+  .journal-entry {
+    padding: 20px;
+  }
+
+  .journal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .journal-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  .auth-callback-container {
     padding: 15px;
-  }
-  
-  .auth-card {
-    padding: 25px;
-  }
-  
-  button {
-    padding: 14px; /* Larger touch target */
   }
 }
 
@@ -361,11 +422,20 @@ button:disabled {
     font-size: 16px; /* Prevents iOS zoom on input focus */
   }
 
-  .auth-container {
+  .journal-entry {
+    padding: 15px;
+    border-radius: 6px;
+  }
+
+  .journal-meta {
+    font-size: 0.8rem;
+  }
+
+  .auth-callback-container {
     padding: 10px;
   }
   
-  .auth-card {
+  .auth-callback-card {
     padding: 20px;
     border-radius: 6px;
   }
