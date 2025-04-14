@@ -178,6 +178,14 @@ button:disabled {
 }
 
 /* Auth components */
+.centered-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0%;
+}
+
 .auth-container {
   width: 100%;
   max-width: 420px;
@@ -217,64 +225,10 @@ button:disabled {
   }
 }
 
-/* Journal components */
-.journal-card {
-  border: 1px solid var(--color-gray);
-  border-radius: 8px;
-  padding: 20px;
-  background-color: var(--color-white);
-  box-shadow: var(--box-shadow);
-}
-
-.journal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.journal-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.journal-preview {
-  margin: 10px 0;
-  color: #666;
-  line-height: 1.5;
-}
-
+/* Journal content - keep only what's needed for the content view */
 .journal-content {
   line-height: 1.6;
   white-space: pre-wrap;
-}
-
-.view-btn,
-.edit-btn {
-  padding: 5px 10px;
-  border-radius: var(--border-radius);
-  text-decoration: none;
-  font-size: 0.8rem;
-}
-
-.view-btn {
-  background-color: var(--color-light-gray);
-  color: var(--color-text-secondary);
-}
-
-.edit-btn {
-  background-color: #e2e3e5;
-  color: #383d41;
-}
-
-.delete-btn {
-  background-color: var(--color-error-bg);
-  color: var(--color-error-text);
-  padding: 5px 10px;
-  font-size: 0.8rem;
-  border: none;
-  border-radius: var(--border-radius);
-  cursor: pointer;
 }
 
 .not-found {
@@ -365,23 +319,6 @@ button:disabled {
     padding: 12px 0; /* Bigger touch target */
   }
 
-  .journal-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .journal-actions {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .view-btn, .edit-btn, .delete-btn {
-    padding: 8px 16px; /* Larger touch targets */
-    min-width: 60px;
-    text-align: center;
-  }
-
   .auth-container {
     padding: 15px;
   }
@@ -402,6 +339,7 @@ button:disabled {
 
   h1 {
     font-size: 1.5rem;
+    margin-bottom: 20px;
   }
 
   form {
@@ -430,28 +368,5 @@ button:disabled {
   .auth-card {
     padding: 20px;
     border-radius: 6px;
-  }
-  
-  h1 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-  }
-
-  .journal-card {
-    padding: 12px;
-  }
-  
-  .journal-header h2 {
-    font-size: 1.2rem;
-  }
-  
-  .journal-actions {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  
-  .view-btn, .edit-btn, .delete-btn {
-    flex: 1;
-    font-size: 0.75rem;
   }
 }

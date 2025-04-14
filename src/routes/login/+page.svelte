@@ -43,7 +43,7 @@
 	<title>Login | Journal App</title>
 </svelte:head>
 
-<main>
+<main class="centered-main">
 	<div class="auth-container">
 		<div class="auth-card">
 			<h1>Login</h1>
