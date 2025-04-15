@@ -334,62 +334,145 @@ button:disabled {
   text-decoration: none;
 }
 
-/* Responsive styles */
+/* Status Bar */
+.status-bar {
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-indicator span {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.status-indicator .ready,
+.status-indicator .online {
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+}
+
+.status-indicator .syncing {
+  background-color: var(--color-info-bg);
+  color: var(--color-info-text);
+}
+
+.status-indicator .error {
+  background-color: var(--color-error-bg);
+  color: var(--color-error-text);
+}
+
+.status-indicator .offline,
+.status-indicator .initializing,
+.status-indicator .creating {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning-text);
+}
+
+/* Buttons and Actions */
+button,
+.new-entry-btn {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-block;
+}
+
+button:hover,
+.new-entry-btn:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.actions {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sync-btn {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: 4px 8px;
+  border-radius: var(--border-radius);
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.sync-btn:disabled {
+  background-color: var(--color-gray);
+  cursor: not-allowed;
+}
+
+.sync-btn:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+/* Messages and States */
+.loading,
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: var(--color-text-secondary);
+}
+
+/* Journal Entries */
+.journal-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   main {
     padding: 15px;
   }
-
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-
+  
   h1 {
     font-size: 1.8rem;
   }
-
-  form {
-    padding: 20px;
-  }
-
-  .form-actions {
-    flex-direction: row;
-    width: 100%;
-  }
-
-  .cancel-btn, 
-  .save-btn, 
-  .primary-btn {
-    flex: 1;
-    text-align: center;
-    padding: 12px 0; /* Bigger touch target */
-  }
-
-  .journal-entry {
-    padding: 20px;
-  }
-
-  .journal-header {
+  
+  .status-bar {
     flex-direction: column;
-    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .actions {
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .new-entry-btn {
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .journal-entries {
     gap: 15px;
   }
-
-  .journal-actions {
-    width: 100%;
-    justify-content: flex-start;
+  
+  .error-message {
+    flex-direction: column;
+    gap: 10px;
   }
-
-  .edit-btn,
-  .delete-btn {
-    flex: 1;
-    text-align: center;
-  }
-
-  .auth-callback-container {
-    padding: 15px;
+  
+  .error-message button {
+    align-self: flex-end;
   }
 }
 
@@ -397,46 +480,13 @@ button:disabled {
   main {
     padding: 10px;
   }
-
+  
   h1 {
     font-size: 1.5rem;
-    margin-bottom: 20px;
-  }
-
-  form {
-    padding: 15px;
-    border-radius: 6px;
-  }
-
-  .error-message {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .error-message button {
-    align-self: flex-end;
-  }
-
-  input,
-  textarea {
-    font-size: 16px; /* Prevents iOS zoom on input focus */
-  }
-
-  .journal-entry {
-    padding: 15px;
-    border-radius: 6px;
-  }
-
-  .journal-meta {
-    font-size: 0.8rem;
-  }
-
-  .auth-callback-container {
-    padding: 10px;
   }
   
-  .auth-callback-card {
-    padding: 20px;
-    border-radius: 6px;
+  .empty-state, 
+  .loading {
+    padding: 25px 15px;
   }
 }
