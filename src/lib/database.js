@@ -4,7 +4,7 @@ import { RxDBUpdatePlugin } from 'rxdb/plugins/update';
 import { getRxStorageDexie } from 'rxdb/plugins/storage-dexie';
 import { replicateAppwrite } from 'rxdb/plugins/replication-appwrite';
 import { ID } from 'appwrite';
-import { client, databases, appwriteConfig } from './appwrite.js';
+import { client, appwriteConfig } from './appwrite.js';
 import { writable } from 'svelte/store';
 import { isAuthenticated } from './auth.js';
 

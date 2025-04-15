@@ -1,4 +1,4 @@
-import { Client, Databases, Account } from 'appwrite';
+import { Client, Account } from 'appwrite';
 import {
 	PUBLIC_APPWRITE_ENDPOINT,
 	PUBLIC_APPWRITE_PROJECT_ID,
@@ -18,5 +18,4 @@ export const client = new Client()
 	.setEndpointRealtime(appwriteConfig.endpoint)
 	.setProject(appwriteConfig.projectId);
 
-export const databases = new Databases(client);
 export const account = new Account(client);
