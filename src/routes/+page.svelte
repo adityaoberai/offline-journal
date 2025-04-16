@@ -3,9 +3,11 @@
 	import { getJournals, deleteJournal, dbStatus, syncStatus, triggerSync } from '$lib/database.js';
 	import JournalCard from '$lib/components/JournalCard.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
-	let journals = $state([]);
+
+	let { data } = $props();
+	let journals = $state(data.journals);
 	let error = $state(null);
-	let loading = $state(true);
+	let loading = $state(false);
 	let syncing = $state(false);
 
 	async function loadJournals() {
@@ -33,6 +35,7 @@
 	async function handleSync() {
 		if (syncing) return;
 		try {
+			alert('Syncing with the cloud... This may take a while depending on your internet connection.');
 			syncing = true;
 			await triggerSync();
 			await loadJournals(); // Reload journals after sync
@@ -46,10 +49,6 @@
 	function formatDate(timestamp) {
 		return new Date(timestamp).toLocaleString();
 	}
-
-	onMount(async () => {
-		await loadJournals();
-	});
 </script>
 
 <svelte:head>

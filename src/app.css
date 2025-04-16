@@ -216,7 +216,7 @@ button:disabled {
   border-radius: 50%;
   border-top-color: var(--color-primary);
   animation: spin 1s ease-in-out infinite;
-  margin-bottom: 16px;
+  margin: 0 auto 15px;
 }
 
 @keyframes spin {

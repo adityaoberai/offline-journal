@@ -106,10 +106,10 @@ const setupReplication = async (db) => {
 			deletedField: 'deleted',
 			collection: db.entries,
 			pull: {
-				batchSize: 10
+				batchSize: 25
 			},
 			push: {
-				batchSize: 10
+				batchSize: 25
 			}
 		});
 
